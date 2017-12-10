@@ -17,4 +17,4 @@ RUN  wget -O swarm-client.jar https://repo.jenkins-ci.org/releases/org/jenkins-c
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
