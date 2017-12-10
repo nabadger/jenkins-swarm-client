@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 ENV JENKINS_SWARM_VERSION 3.6
-ENV HOME /home/jenkins-slave
+ENV HOME /home/jenkins
 
 # Update and upgrade apk then install required packages
 RUN apk update && \
@@ -14,7 +14,7 @@ RUN apk update && \
 	apk --no-cache add subversion && \
 	apk --no-cache add docker
 
-RUN adduser -h $HOME -D jenkins-slave
+RUN adduser -h $HOME -D jenkins -G docker
 
 # Download the latest Jenkins swarm client with curl - version 3.6
 RUN curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar \
@@ -22,7 +22,7 @@ RUN curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$JENKINS_SWARM_VERS
 
 COPY jenkins-slave.sh /usr/local/bin/jenkins-slave.sh
 
-USER jenkins-slave
-VOLUME /home/jenkins-slave
+USER jenkins
+VOLUME /home/jenkins
 
 ENTRYPOINT ["/usr/local/bin/jenkins-slave.sh"]
