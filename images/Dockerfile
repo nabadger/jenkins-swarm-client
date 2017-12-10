@@ -3,7 +3,7 @@ FROM openjdk:8-jdk-alpine
 
 USER root
 
-# Update and upgrade apk then install curl, maven, git, and nodejs
+# Update and upgrade apk then install some useful packages
 RUN apk update && \
 	apk upgrade && \
 	apk --no-cache add curl && \
@@ -16,6 +16,5 @@ RUN apk update && \
 RUN mkdir /workspace && \
 	chmod 777 /workspace
 
-# Download the latest Jenkins swarm client with curl - version 3.6
-# Browse all versions here: https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/
+# Download the latest Jenkins swarm client 
 RUN curl -O https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.3/swarm-client-3.6.jar
