@@ -1,6 +1,5 @@
-# Jenkins Swarm Agent 
+# Jenkins Swarm Agent (3.6)
 
-* Curl
 * Docker
 * Git
 * Java OpenJDK 8 (Alpine)
